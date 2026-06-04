@@ -1,0 +1,11 @@
+# No external dependencies are required.
+# Python 3.10+ is required (PEP 604 union types used in code).
+
+# Optional: load .env files locally 
+python-dotenv==1.1.1
+
+# Optional: HTTP client alternative a urllib 
+requests==2.31.0
+
+# Optional: servidor de producción (si migras a WSGI/ASGI)
+gunicorn==20.1.0

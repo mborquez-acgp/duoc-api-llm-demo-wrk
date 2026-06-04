@@ -1,0 +1,1310 @@
+openapi: 3.0.3
+info:
+  title: Demo Analytics API
+  version: 1.0.0
+  description: >
+    AI-ready API exposing customer, card, transaction, and analytics data from a simplified environment. Built to support secure AI agent interactions, enabling natural language queries, contextual data retrieval, and insight generation from aggregated information.
+
+servers:
+  - url: http://localhost:8080/api
+    description: Local development server
+
+tags:
+  - name: Customers
+    description: Customer queries and details
+  - name: Cards
+    description: Card information and queries
+  - name: Transactions
+    description: Transaction details and queries
+  - name: Analytics
+    description: Aggregated metrics, summaries, and AI-driven insights
+  - name: AI
+    description: Natural language question endpoint for the analytics assistant
+
+paths:
+
+  /customers:
+    get:
+      tags:
+        - Customers
+      summary: Customer listing
+      description: List all customers with pagination support. Use query parameters to control the number of results and offset for large datasets.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        "200":
+          description: Customer list with pagination
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+
+  /customers/{customer_id}:
+    get:
+      tags:
+        - Customers
+      summary: Get customer by ID
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Customer found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+
+  /customers/search:
+    get:
+      tags:
+        - Customers
+      summary: Search customers by name
+      description: Search for customers using a query string that matches their full name. Supports partial matches
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          example: Carlos
+      responses:
+        "200":
+          description: Customers found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+
+  /customers/{customer_id}/cards:
+    get:
+      tags:
+        - Cards
+      summary: Cards of a customer
+      description: Lists all cards associated with a specific customer.
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Cards associated with the customer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Card"
+
+  /customers/{customer_id}/transactions:
+    get:
+      tags:
+        - Transactions
+      summary: List transactions for a customer
+      description: Lists the transactions associated with all cards of a customer.
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+          example: "2026-05-01"
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+          example: "2026-05-31"
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        "200":
+          description: Transactions for the customer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransactionDetail"
+
+  /cards:
+    get:
+      tags:
+        - Cards
+      summary: Listar tarjetas
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [credit, debit]
+        - name: minAmount
+          in: query
+          schema:
+            type: number
+            format: decimal
+        - name: maxAmount
+          in: query
+          schema:
+            type: number
+            format: decimal
+      responses:
+        "200":
+          description: Lista de tarjetas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Card"
+
+  /cards/{cardId}:
+    get:
+      tags:
+        - Cards
+      summary: Obtener tarjeta por ID
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Tarjeta encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Card"
+
+  /cards/{cardId}/transactions:
+    get:
+      tags:
+        - Transactions
+      summary: List transactions for a card
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Transactions for the card
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Transaction"
+
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: List transactions with filters
+      description: >
+        Filtered endpoint for transactions. Avoid using without filters in production.
+         Use query parameters to filter by date, operation type, and amount. Supports pagination with limit and offset.
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+          example: "2026-05-26"
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+        - name: minAmount
+          in: query
+          schema:
+            type: number
+            format: decimal
+        - name: maxAmount
+          in: query
+          schema:
+            type: number
+            format: decimal
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 500
+      responses:
+        "200":
+          description: Transactions found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransactionDetail"
+
+  /transactions/{transactionId}:
+    get:
+      tags:
+        - Transactions
+      summary: Get transaction by ID
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Transaction found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionDetail"
+
+  /analytics/summary:
+    get:
+      tags:
+        - Analytics
+      summary: General summary of the database
+      description: Returns overall totals for dashboard or AI purposes.
+      responses:
+        "200":
+          description: General summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralSummary"
+
+  /analytics/users/count:
+    get:
+      tags:
+        - Analytics
+      summary: Count users
+      responses:
+        "200":
+          description: Total number of users
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountResponse"
+
+  /analytics/cards/count:
+    get:
+      tags:
+        - Analytics
+      summary: Count cards
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [credit, debit]
+      responses:
+        "200":
+          description: Total number of cards
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountResponse"
+
+  /analytics/transactions/count:
+    get:
+      tags:
+        - Analytics
+      summary: Count transactions
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Total number of transactions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountResponse"
+
+  /analytics/users-with-transactions/count:
+    get:
+      tags:
+        - Analytics
+      summary: Count users who made transactions
+      description: Cuenta usuarios únicos con movimientos en una fecha o rango.
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+          example: "2026-05-26"
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Cantidad de usuarios únicos con transacciones
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountResponse"
+
+  /analytics/users-with-transactions:
+    get:
+      tags:
+        - Analytics
+      summary: Listar usuarios que hicieron transacciones
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Usuarios con transacciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserTransactionSummary"
+
+  /analytics/transactions/total-amount:
+    get:
+      tags:
+        - Analytics
+      summary: Sumar operation_ammount total de movimientos
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Total de operation_ammount
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmountResponse"
+
+  /analytics/transactions/average-amount:
+    get:
+      tags:
+        - Analytics
+      summary: Calcular operation_ammount promedio de movimientos
+      parameters:
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Promedio de operation_ammount
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmountResponse"
+
+  /analytics/transactions/min-amount:
+    get:
+      tags:
+        - Analytics
+      summary: Obtener menor movimiento
+      parameters:
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Movimiento con menor operation_ammount
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionDetail"
+
+  /analytics/transactions/max-amount:
+    get:
+      tags:
+        - Analytics
+      summary: Obtener mayor movimiento
+      parameters:
+        - name: operationType
+          in: query
+          schema:
+            type: string
+            enum: [output, input]
+      responses:
+        "200":
+          description: Movimiento con mayor operation_ammount
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionDetail"
+
+  /analytics/transactions/by-date:
+    get:
+      tags:
+        - Analytics
+      summary: Agrupar movimientos por fecha
+      parameters:
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Movimientos agrupados por fecha
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransactionsByDate"
+
+  /analytics/transactions/by-operation-type:
+    get:
+      tags:
+        - Analytics
+      summary: Agrupar movimientos por tipo de operación
+      responses:
+        "200":
+          description: Movimientos agrupados por tipo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransactionsByOperationType"
+
+  /analytics/cards/by-type:
+    get:
+      tags:
+        - Analytics
+      summary: Agrupar tarjetas por tipo
+      responses:
+        "200":
+          description: Tarjetas agrupadas por tipo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CardsByType"
+
+  /analytics/cards/total-balance:
+    get:
+      tags:
+        - Analytics
+      summary: Sumar saldo total de tarjetas
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [credit, debit]
+      responses:
+        "200":
+          description: Suma de saldos actuales
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmountResponse"
+
+  /analytics/cards/average-balance:
+    get:
+      tags:
+        - Analytics
+      summary: Promedio de saldo de tarjetas
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [credit, debit]
+      responses:
+        "200":
+          description: Promedio de saldo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmountResponse"
+
+  /analytics/users/{customer_id}/summary:
+    get:
+      tags:
+        - Analytics
+      summary: Resumen financiero de un usuario
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Resumen del usuario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserFinancialSummary"
+
+  /analytics/users/{customer_id}/total-charges:
+    get:
+      tags:
+        - Analytics
+      summary: Total de outputs de un usuario
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Total de outputs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmountResponse"
+
+  /analytics/users/{customer_id}/total-payments:
+    get:
+      tags:
+        - Analytics
+      summary: Total de inputs de un usuario
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Total de inputs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmountResponse"
+
+  /analytics/users/{customer_id}/net-movement:
+    get:
+      tags:
+        - Analytics
+      summary: Movimiento neto de un usuario
+      description: Calcula inputs menos outputs en un rango de fechas.
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Movimiento neto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmountResponse"
+
+  /analytics/ranking/users-by-spending:
+    get:
+      tags:
+        - Analytics
+      summary: Ranking de usuarios por gasto
+      parameters:
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Ranking de usuarios por outputs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserAmountRanking"
+
+  /analytics/ranking/users-by-payments:
+    get:
+      tags:
+        - Analytics
+      summary: Ranking de usuarios por inputs
+      parameters:
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Ranking de usuarios por inputs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserAmountRanking"
+
+  /analytics/ranking/cards-by-balance:
+    get:
+      tags:
+        - Analytics
+      summary: Ranking de tarjetas por saldo actual
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [credit, debit]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Ranking de tarjetas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CardBalanceRanking"
+
+  /analytics/query:
+    post:
+      tags:
+        - Analytics
+      summary: Endpoint genérico controlado para IA
+      description: >
+        Permite que la IA solicite métricas usando nombres permitidas.
+        El backend decide qué SQL ejecutar. La IA no envía SQL libre.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyticsQueryRequest"
+            examples:
+              usersWithTransactionsCount:
+                summary: Contar usuarios con transacciones por fecha
+                value:
+                  metric: users_with_transactions_count
+                  filters:
+                    date: "2026-05-26"
+              totalChargesByDate:
+                summary: Total de outputs por fecha
+                value:
+                  metric: total_amount
+                  filters:
+                    date: "2026-05-26"
+                    operationType: output
+              userSummary:
+                summary: Resumen de usuario
+                value:
+                  metric: user_financial_summary
+                  filters:
+                    customer_id: 1
+      responses:
+        "200":
+          description: Resultado de la métrica solicitada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalyticsQueryResponse"
+
+  /ai/query:
+    post:
+      tags:
+        - AI
+      summary: Preguntar a la IA por un KPI o métrica
+      description: >
+        Recibe una pregunta en lenguaje natural y devuelve la métrica planificada,
+        el resultado de la consulta y una respuesta generada por IA.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AiQuestionRequest"
+            examples:
+              simpleQuestion:
+                summary: Pregunta de ejemplo a la IA
+                value:
+                  question: "¿Cuántas transacciones de output hubo ayer?"
+      responses:
+        "200":
+          description: Respuesta de IA para la pregunta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AiQuestionResponse"
+
+  /ai/ask:
+    post:
+      tags:
+        - AI
+      summary: Alias de IA para preguntar métricas
+      description: >
+        Alternativa a /ai/query que permite formular preguntas en lenguaje natural
+        y obtener la respuesta de la IA.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AiQuestionRequest"
+      responses:
+        "200":
+          description: Respuesta de IA para la pregunta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AiQuestionResponse"
+
+components:
+  schemas:
+
+    Customer:
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          example: 1
+        nombreCompleto:
+          type: string
+          example: Carlos Mendoza
+        email:
+          type: string
+          example: carlos.m@ejemplo.com
+
+    Card:
+      type: object
+      properties:
+        card_id:
+          type: integer
+          example: 101
+        customer_id:
+          type: integer
+          example: 1
+        numeroTarjetaMasked:
+          type: string
+          example: "****-****-****-4321"
+        tipoTarjeta:
+          type: string
+          example: credit
+        operation_ammountActual:
+          type: number
+          format: decimal
+          example: 4500.00
+
+    Transaction:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          example: "txn_001"
+        card_id:
+          type: integer
+          example: 101
+        fechaTransaccion:
+          type: string
+          format: date
+          example: "2026-05-20"
+        tipoOperacion:
+          type: string
+          example: output
+        operation_ammount:
+          type: number
+          format: decimal
+          example: 350.00
+        operation_desc:
+          type: string
+          example: Compra en Supermercado
+
+    TransactionDetail:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          example: "txn_001"
+        customer_id:
+          type: integer
+          example: 1
+        nombreCompleto:
+          type: string
+          example: Carlos Mendoza
+        card_id:
+          type: integer
+          example: 101
+        numeroTarjetaMasked:
+          type: string
+          example: "****-****-****-4321"
+        tipoTarjeta:
+          type: string
+          example: credit
+        fechaTransaccion:
+          type: string
+          format: date
+          example: "2026-05-20"
+        tipoOperacion:
+          type: string
+          example: output
+        operation_ammount:
+          type: number
+          format: decimal
+          example: 350.00
+        operation_desc:
+          type: string
+          example: Compra en Supermercado
+
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+
+    AmountResponse:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: decimal
+          example: 1200.00
+
+    GeneralSummary:
+      type: object
+      properties:
+        totalUsers:
+          type: integer
+          example: 3
+        totalCards:
+          type: integer
+          example: 4
+        totalTransactions:
+          type: integer
+          example: 5
+        totalCharges:
+          type: number
+          format: decimal
+          example: 1595.50
+        totalPayments:
+          type: number
+          format: decimal
+          example: 1500.00
+        totalCurrentBalance:
+          type: number
+          format: decimal
+          example: 14650.75
+
+    UserTransactionSummary:
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          example: 2
+        nombreCompleto:
+          type: string
+          example: Lucía Fernández
+        transactionsCount:
+          type: integer
+          example: 1
+        totalAmount:
+          type: number
+          format: decimal
+          example: 1200.00
+
+    TransactionsByDate:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2026-05-26"
+        transactionsCount:
+          type: integer
+          example: 1
+        totalAmount:
+          type: number
+          format: decimal
+          example: 1200.00
+
+    TransactionsByOperationType:
+      type: object
+      properties:
+        operationType:
+          type: string
+          example: output
+        transactionsCount:
+          type: integer
+          example: 3
+        totalAmount:
+          type: number
+          format: decimal
+          example: 1595.50
+
+    CardsByType:
+      type: object
+      properties:
+        cardType:
+          type: string
+          example: credit
+        cardsCount:
+          type: integer
+          example: 2
+        totalBalance:
+          type: number
+          format: decimal
+          example: 5000.00
+
+    UserFinancialSummary:
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          example: 1
+        nombreCompleto:
+          type: string
+          example: Carlos Mendoza
+        totalCards:
+          type: integer
+          example: 2
+        totalTransactions:
+          type: integer
+          example: 3
+        totalCharges:
+          type: number
+          format: decimal
+          example: 395.50
+        totalPayments:
+          type: number
+          format: decimal
+          example: 1000.00
+        netMovement:
+          type: number
+          format: decimal
+          example: 604.50
+        totalCurrentBalance:
+          type: number
+          format: decimal
+          example: 5750.75
+
+    UserAmountRanking:
+      type: object
+      properties:
+        position:
+          type: integer
+          example: 1
+        customer_id:
+          type: integer
+          example: 2
+        nombreCompleto:
+          type: string
+          example: Lucía Fernández
+        amount:
+          type: number
+          format: decimal
+          example: 1200.00
+
+    CardBalanceRanking:
+      type: object
+      properties:
+        position:
+          type: integer
+          example: 1
+        card_id:
+          type: integer
+          example: 103
+        customer_id:
+          type: integer
+          example: 2
+        nombreCompleto:
+          type: string
+          example: Lucía Fernández
+        tipoTarjeta:
+          type: string
+          example: debit
+        operation_ammountActual:
+          type: number
+          format: decimal
+          example: 8400.00
+
+    AnalyticsQueryRequest:
+      type: object
+      required:
+        - metric
+        - filters
+      properties:
+        metric:
+          type: string
+          enum:
+            - general_summary
+            - users_count
+            - cards_count
+            - transactions_count
+            - users_with_transactions_count
+            - users_with_transactions
+            - total_amount
+            - average_amount
+            - min_transaction
+            - max_transaction
+            - transactions_by_date
+            - transactions_by_operation_type
+            - cards_by_type
+            - cards_total_balance
+            - cards_average_balance
+            - user_financial_summary
+            - user_total_charges
+            - user_total_payments
+            - user_net_movement
+            - ranking_users_by_spending
+            - ranking_users_by_payments
+            - ranking_cards_by_balance
+        filters:
+          type: object
+          additionalProperties: true
+          example:
+            date: "2026-05-26"
+            operationType: output
+            customer_id: 1
+            limit: 10
+
+    AnalyticsQueryResponse:
+      type: object
+      properties:
+        metric:
+          type: string
+          example: users_with_transactions_count
+        filters:
+          type: object
+          additionalProperties: true
+        result:
+          oneOf:
+            - type: object
+            - type: array
+            - type: number
+            - type: integer
+            - type: string
+
+    AiQuestionRequest:
+      type: object
+      required:
+        - question
+      properties:
+        question:
+          type: string
+          example: "¿Cuántas transacciones de input se registraron el mes pasado?"
+
+    AiQuestionResponse:
+      type: object
+      properties:
+        question:
+          type: string
+          example: "¿Cuántas transacciones de input se registraron el mes pasado?"
+        metric:
+          type: string
+          example: transactions_count
+        filters:
+          type: object
+          additionalProperties: true
+        result:
+          oneOf:
+            - type: object
+            - type: array
+            - type: number
+            - type: integer
+            - type: string
+        answer:
+          type: string
+          example: "La IA estima que hubo 120 transacciones de input en el período solicitado."

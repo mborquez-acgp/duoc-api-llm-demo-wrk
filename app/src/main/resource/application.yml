@@ -1,0 +1,5 @@
+application.name: duoc-api-llm-demo
+application.version: 0.1.0
+application.description: "API and LLM integration for natural-language access to enterprise data, interpreting intent, aggregating multiple sources, and generating actionable insights."
+limits:
+  MAX_LOG_BODY_LENGTH: 5_000

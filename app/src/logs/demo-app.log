@@ -1,0 +1,179 @@
+2026-06-04 13:17:01,222 INFO [app.src.main.py.main] starting Demo API host=0.0.0.0 port=8080 database=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/database-demo.sqlite csv_data=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/data/raw
+2026-06-04 13:17:01,222 INFO [app.src.main.py.infrastructure.database] initializing database path=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/database-demo.sqlite csv_data_path=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/data/raw
+2026-06-04 13:17:01,226 INFO [app.src.main.py.infrastructure.database] database initialized path=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/database-demo.sqlite
+2026-06-04 13:17:01,226 INFO [app.src.main.py.main] services initialized ai_configured=False gemini_model=gemini-flash-latest
+2026-06-04 13:17:50,055 INFO [app.src.main.py.main] request id=31f2e4e6a884 method=GET path=/api/customers query=limit=50&offset=0 remote=127.0.0.1 body=-
+2026-06-04 13:17:50,059 INFO [app.src.main.py.main] http_server "GET /api/customers?limit=50&offset=0 HTTP/1.1" 200 -
+2026-06-04 13:17:50,060 INFO [app.src.main.py.main] response id=31f2e4e6a884 method=GET path=/api/customers status=200 elapsed_ms=5.24 body=[{"customer_id": 1, "nombreCompleto": "Soledad Cabrera Ríos", "email": "soledad.cabrera@outlook.com"}, {"customer_id": 2, "nombreCompleto": "Rony Chambilla Estrada", "email": "rony.chambilla@hotmail.com"}, {"customer_id": 3, "nombreCompleto": "Germán Molina Longo", "email": "german.molina@hotmail.com"}, {"customer_id": 4, "nombreCompleto": "Guadalupe Ochoa Ávila", "email": "guadalupe.ochoa@outlook.com"}, {"customer_id": 5, "nombreCompleto": "Beatriz Pacheco Chura", "email": "beatriz.pacheco@outlook.com"}, {"customer_id": 6, "nombreCompleto": "Armando Contreras Bazán", "email": "armando.contreras@hotmail.com"}, {"customer_id": 7, "nombreCompleto": "Rosario Pascual Román", "email": "rosario.pascual@hotmail.com"}, {"customer_id": 8, "nombreCompleto": "Flavia Olivares Mamani", "email": "flavia.olivares@icloud.com"}, {"customer_id": 9, "nombreCompleto": "Amanda Robles Palma", "email": "amanda.robles@icloud.com"}, {"customer_id": 10, "nombreCompleto": "Matilde Rivera Moreno", "email": "matilde.rivera@icloud.com"}, {"customer_id": 11, "nombreCompleto": "Andrea Aguilar Quiroga", "email": "andrea.aguilar@yahoo.com"}, {"customer_id": 12, "nombreCompleto": "Lourdes Peña Santos", "email": "lourdes.pena@outlook.com"}, {"customer_id": 13, "nombreCompleto": "Horacio Jara Segura", "email": "horacio.jara@gmail.com"}, {"customer_id": 14, "nombreCompleto": "Gladys Villalba Amato", "email": "gladys.villalba@yahoo.com"}, {"customer_id": 15, "nombreCompleto": "Isabel Navarro García", "email": "isabel.navarro@icloud.com"}, {"customer_id": 16, "nombreCompleto": "Mercedes Gutiérrez Díez", "email": "mercedes.gutierrez@yahoo.com"}, {"customer_id": 17, "nombreCompleto": "Inés Pavez Córdoba", "email": "ines.pavez@outlook.com"}, {"customer_id": 18, "nombreCompleto": "Isidora Vargas Toro", "email": "isidora.vargas@outlook.com"}, {"customer_id": 19, "nombreCompleto": "Verónica Mora Sanz", "email": "veronica.mora@icloud.com"}, {"customer_id": 20, "nombreCompleto": "Pablo Ávila Tapia", "email": "pablo.avila@yahoo.com"}, {"customer_id": 21, "nombreCompleto": "Rosa Pizarro Cáceres", "email": "rosa.pizarro@yahoo.com"}, {"customer_id": 22, "nombreCompleto": "Fabián Ramos Catalán", "email": "fabian.ramos@icloud.com"}, {"customer_id": 23, "nombreCompleto": "Ismael Cordova Fuentes", "email": "ismael.cordova@outlook.com"}, {"customer_id": 24, "nombreCompleto": "Martín Meza González", "email": "martin.meza@outlook.com"}, {"customer_id": 25, "nombreCompleto": "María Fernanda Forero Bedoya", "email": "mariafernanda.forero@gmail.com"}, {"customer_id": 26, "nombreCompleto": "Eduardo Reyes Martínez", "email": "eduardo.reyes@icloud.com"}, {"customer_id": 27, "nombreCompleto": "Sandro Condori Montes", "email": "sandro.condori@hotmail.com"}, {"customer_id": 28, "nombreCompleto": "Paloma Núñez Bustos", "email": "paloma.nunez@icloud.com"}, {"customer_id": 29, "nombreCompleto": "Julio Coronel Castro", "email": "julio.coronel@yahoo.com"}, {"customer_id": 30, "nombreCompleto": "Lina Sánchez Contreras", "email": "lina.sanchez@gmail.com"}, {"customer_id": 31, "nombreCompleto": "Marcelo García Villegas", "email": "marcelo.garcia@gmail.com"}, {"customer_id": 32, "nombreCompleto": "Ángeles Cano Ramos", "email": "angeles.cano@outlook.com"}, {"customer_id": 33, "nombreCompleto": "Matías Silva Ruiz", "email": "matias.silva@icloud.com"}, {"customer_id": 34, "nombreCompleto": "Nilton Trujillo Cutipa", "email": "nilton.trujillo@icloud.com"}, {"customer_id": 35, "nombreCompleto": "Cristina Di Pietro Campos", "email": "cristina.dipietro@gmail.com"}, {"customer_id": 36, "nombreCompleto": "Marcelo Ccari Vargas", "email": "marcelo.ccari@icloud.com"}, {"customer_id": 37, "nombreCompleto": "Jaime Escobar Concha", "email": "jaime.escobar@gmail.com"}, {"customer_id": 38, "nombreCompleto": "Yenny Castro Rivera", "email": "yenny.castro@icloud.com"}, {"customer_id": 39, "nombreCompleto": "Nicolás López Vega", "email": "nicolas.lopez@yahoo.com"}, {"customer_id": 40, "nombreCompleto": "Camila Negri De Luca", "email": "camila.negri@yahoo.com"}, {"customer_id": 41, "nombreCompleto": "Martín Rodríguez Peña", "email": "martin.rodriguez@hotmail.com"}, {"customer_id": 42, "nombreCompleto": "Norberto Rivera Cárdenas", "email": "norberto.rivera@gmail.com"}, {"customer_id": 43, "nombreCompleto": "Verónica Mejías Ponce", "email": "veronica.mejias@outlook.com"}, {"customer_id": 44, "nombreCompleto": "Susana Solano Zamora", "email": "susana.solano@yahoo.com"}, {"customer_id": 45, "nombreCompleto": "Ana Ramos Vásquez", "email": "ana.ramos@gmail.com"}, {"customer_id": 46, "nombreCompleto": "Abril Delgado Castillo", "email": "abril.delgado@icloud.com"}, {"customer_id": 47, "nombreCompleto": "Carmen Carmona Salazar", "email": "carmen.carmona@outlook.com"}, {"customer_id": 48, "nombreCompleto": "Carlos López Aguilar", "email": "carlos.lopez@yahoo.com"}, {"customer_id": 49, "nombreCompleto": "Emilio Sánchez Gallardo", "email": "emilio.sanchez@yahoo.com"}, {"customer_id": 50, "nombreCompleto": "Josefina R...<truncated 59 chars>
+2026-06-04 13:22:40,714 INFO [app.src.main.py.main] starting Demo API host=0.0.0.0 port=8080 database=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/database-demo.sqlite csv_data=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/data/raw
+2026-06-04 13:22:40,715 INFO [app.src.main.py.infrastructure.database] initializing database path=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/database-demo.sqlite csv_data_path=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/data/raw
+2026-06-04 13:22:40,716 INFO [app.src.main.py.infrastructure.database] database initialized path=/Users/acgp/Downloads/duoc-api-llm-demo-main/database/database-demo.sqlite
+2026-06-04 13:22:40,716 INFO [app.src.main.py.main] services initialized ai_configured=True gemini_model=gemini-flash-latest
+2026-06-04 13:23:25,711 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:23:25,712 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:23:25,713 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:23:25,714 INFO [app.src.main.py.main] request id=5ec800e27297 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "¿Cuántas transacciones de input se registraron el mes pasado?"
+}
+2026-06-04 13:23:25,714 INFO [app.src.main.py.application.ai_service] processing AI analytics question question=¿Cuántas transacciones de input se registraron el mes pasado?
+2026-06-04 13:23:25,715 INFO [app.src.main.py.infrastructure.llm_client] calling Gemini API model=gemini-flash-latest prompt_chars=1229
+2026-06-04 13:23:29,330 INFO [app.src.main.py.infrastructure.llm_client] Gemini API response received model=gemini-flash-latest response_chars=113
+2026-06-04 13:23:29,331 INFO [app.src.main.py.application.ai_service] AI planned analytics query metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:23:29,331 INFO [app.src.main.py.application.services] executing analytics query metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:23:29,340 INFO [app.src.main.py.application.services] analytics query completed metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:23:29,340 INFO [app.src.main.py.infrastructure.llm_client] calling Gemini API model=gemini-flash-latest prompt_chars=375
+2026-06-04 13:23:33,324 INFO [app.src.main.py.infrastructure.llm_client] Gemini API response received model=gemini-flash-latest response_chars=84
+2026-06-04 13:23:33,324 INFO [app.src.main.py.application.ai_service] AI analytics answer generated metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:23:33,325 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 200 -
+2026-06-04 13:23:33,325 INFO [app.src.main.py.main] response id=5ec800e27297 method=POST path=/api/ai/ask status=200 elapsed_ms=7611.50 body={"question": "¿Cuántas transacciones de input se registraron el mes pasado?", "metric": "transactions_count", "filters": {"from": "2026-05-01", "to": "2026-05-31", "operationType": "input"}, "result": {"count": 243}, "answer": "Se registraron 243 transacciones de tipo \"input\" entre el 1 y el 31 de mayo de 2026."}
+2026-06-04 13:25:23,610 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:25:23,610 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:25:23,610 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:25:23,611 INFO [app.src.main.py.main] request id=277e511d6881 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "genera un histograma en mermaid que contenga la distribucion del total de monto por cargos y abonos por fecha de las transacciones de la ultima semana, La salida debe ser en texto plano"
+}
+2026-06-04 13:25:23,611 INFO [app.src.main.py.application.ai_service] processing AI analytics question question=genera un histograma en mermaid que contenga la distribucion del total de monto por cargos y abonos por fecha de las transacciones de la ultima semana, La salida debe ser en texto plano
+2026-06-04 13:25:23,611 INFO [app.src.main.py.infrastructure.llm_client] calling Gemini API model=gemini-flash-latest prompt_chars=1353
+2026-06-04 13:25:30,161 INFO [app.src.main.py.infrastructure.llm_client] Gemini API response received model=gemini-flash-latest response_chars=89
+2026-06-04 13:25:30,161 INFO [app.src.main.py.application.ai_service] AI planned analytics query metric=transactions_by_date filters={'from': '2026-05-28', 'to': '2026-06-03'}
+2026-06-04 13:25:30,162 INFO [app.src.main.py.application.services] executing analytics query metric=transactions_by_date filters={'from': '2026-05-28', 'to': '2026-06-03'}
+2026-06-04 13:25:30,164 INFO [app.src.main.py.application.services] analytics query completed metric=transactions_by_date filters={'from': '2026-05-28', 'to': '2026-06-03'}
+2026-06-04 13:25:30,165 INFO [app.src.main.py.infrastructure.llm_client] calling Gemini API model=gemini-flash-latest prompt_chars=759
+2026-06-04 13:25:38,865 INFO [app.src.main.py.infrastructure.llm_client] Gemini API response received model=gemini-flash-latest response_chars=485
+2026-06-04 13:25:38,866 INFO [app.src.main.py.application.ai_service] AI analytics answer generated metric=transactions_by_date filters={'from': '2026-05-28', 'to': '2026-06-03'}
+2026-06-04 13:25:38,866 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 200 -
+2026-06-04 13:25:38,867 INFO [app.src.main.py.main] response id=277e511d6881 method=POST path=/api/ai/ask status=200 elapsed_ms=15255.94 body={"question": "genera un histograma en mermaid que contenga la distribucion del total de monto por cargos y abonos por fecha de las transacciones de la ultima semana, La salida debe ser en texto plano", "metric": "transactions_by_date", "filters": {"from": "2026-05-28", "to": "2026-06-03"}, "result": [{"date": "2026-05-28", "transactionsCount": 35, "totalAmount": 122689.42}, {"date": "2026-05-29", "transactionsCount": 39, "totalAmount": 129545.57}, {"date": "2026-05-30", "transactionsCount": 34, "totalAmount": 130323.23}, {"date": "2026-05-31", "transactionsCount": 9, "totalAmount": 31445.87}], "answer": "Aquí tienes el histograma en formato Mermaid que representa la distribución del monto total por fecha. \n\n**Filtros aplicados:** Rango de fechas desde el `2026-05-28` hasta el `2026-06-03` (la API solo retornó registros con transacciones hasta el `2026-05-31`).\n\n```mermaid\nxychart-beta\n    title \"Distribución del Monto Total por Fecha\"\n    x-axis [\"2026-05-28\", \"2026-05-29\", \"2026-05-30\", \"2026-05-31\"]\n    y-axis \"Monto Total\"\n    bar [122689.42, 129545.57, 130323.23, 31445.87]\n```"}
+2026-06-04 13:29:24,205 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:29:24,206 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:29:24,207 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:29:24,209 INFO [app.src.main.py.main] request id=3fc611a71eb8 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "Actúa como un analista de datos y experto en Mermaid.js.
+Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes SEPARAR obligatoriamente los "Cargos" y los "Abonos" por fecha.
+
+REGLAS ESTRICTAS:
+1. Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: Total de Cargos y Total de Abonos.
+2. Genera un gráfico de tipo `xychart-beta` en Mermaid.
+3. El gráfico DEBE tener dos series de barras distintas (una para Cargos y otra para Abonos).
+4. La salida debe ser texto plano formateado dentro del campo "answer" del JSON, usando \n para los saltos de línea.
+
+ESTRUCTURA EXACTA ESPERADA PARA EL CÓDIGO MERMAID:
+```mermaid
+xychart-beta
+    title "Distribución de Cargos y Abonos por Fecha"
+    x-axis ["YYYY-MM-DD", "YYYY-MM-DD"]
+    y-axis "Monto Total"
+    bar "Cargos" [100.50, 200.00]
+    bar "Abonos" [50.25, 300.10]"
+}
+2026-06-04 13:29:24,210 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:29:24,210 INFO [app.src.main.py.main] response id=3fc611a71eb8 method=POST path=/api/ai/ask status=422 elapsed_ms=0.66 body={"detail": "Invalid control character at: line 2 column 72 (char 73)"}
+2026-06-04 13:29:44,522 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:29:44,523 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:29:44,523 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:29:44,525 INFO [app.src.main.py.main] request id=d218221d234d method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "Actúa como un analista de datos y experto en Mermaid.js.
+Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes SEPARAR obligatoriamente los "Cargos" y los "Abonos" por fecha.
+
+REGLAS ESTRICTAS:
+1. Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: Total de Cargos y Total de Abonos.
+2. Genera un gráfico de tipo `xychart-beta` en Mermaid.
+3. El gráfico DEBE tener dos series de barras distintas (una para Cargos y otra para Abonos).
+4. La salida debe ser texto plano formateado dentro del campo "answer" del JSON, usando \n para los saltos de línea.
+
+ESTRUCTURA EXACTA ESPERADA PARA EL CÓDIGO MERMAID:
+mermaid
+xychart-beta
+    title "Distribución de Cargos y Abonos por Fecha"
+    x-axis ["YYYY-MM-DD", "YYYY-MM-DD"]
+    y-axis "Monto Total"
+    bar "Cargos" [100.50, 200.00]
+    bar "Abonos" [50.25, 300.10]"
+}
+2026-06-04 13:29:44,526 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:29:44,526 INFO [app.src.main.py.main] response id=d218221d234d method=POST path=/api/ai/ask status=422 elapsed_ms=2.15 body={"detail": "Invalid control character at: line 2 column 72 (char 73)"}
+2026-06-04 13:29:54,617 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:29:54,618 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:29:54,618 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:29:54,619 INFO [app.src.main.py.main] request id=1174cd2317a4 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "Actúa como un analista de datos y experto en Mermaid.js.
+Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes SEPARAR obligatoriamente los "Cargos" y los "Abonos" por fecha.
+
+REGLAS ESTRICTAS:
+1. Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: Total de Cargos y Total de Abonos.
+2. Genera un gráfico de tipo xychart-beta en Mermaid.
+3. El gráfico DEBE tener dos series de barras distintas (una para Cargos y otra para Abonos).
+4. La salida debe ser texto plano formateado dentro del campo "answer" del JSON, usando \n para los saltos de línea.
+
+ESTRUCTURA EXACTA ESPERADA PARA EL CÓDIGO MERMAID:
+mermaid
+xychart-beta
+    title "Distribución de Cargos y Abonos por Fecha"
+    x-axis ["YYYY-MM-DD", "YYYY-MM-DD"]
+    y-axis "Monto Total"
+    bar "Cargos" [100.50, 200.00]
+    bar "Abonos" [50.25, 300.10]"
+}
+2026-06-04 13:29:54,620 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:29:54,620 INFO [app.src.main.py.main] response id=1174cd2317a4 method=POST path=/api/ai/ask status=422 elapsed_ms=0.91 body={"detail": "Invalid control character at: line 2 column 72 (char 73)"}
+2026-06-04 13:30:59,663 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:30:59,664 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:30:59,664 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:30:59,666 INFO [app.src.main.py.main] request id=d1270e9142d3 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "Actúa como un analista de datos y experto en Mermaid.js. Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes SEPARAR obligatoriamente los "Cargos" y los "Abonos" por fecha. REGLAS ESTRICTAS: . Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: Total de Cargos y Total de Abonos. . Genera un gráfico de tipo `xychart-beta` en Mermaid. . El gráfico DEBE tener dos series de barras distintas (una para Cargos y otra para Abonos). . La salida debe ser texto plano formateado dentro del campo "answer" del JSON, usando \n para los saltos de línea. ESTRUCTURA EXACTA ESPERADA PARA EL CÓDIGO MERMAID: ```mermaid xychart-beta title "Distribución de Cargos y Abonos por Fecha" x-axis ["YYYY-MM-DD", "YYYY-MM-DD"] y-axis "Monto Total" bar "Cargos" [., .] bar "Abonos" [., .]"
+}
+2026-06-04 13:30:59,667 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:30:59,667 INFO [app.src.main.py.main] response id=d1270e9142d3 method=POST path=/api/ai/ask status=422 elapsed_ms=0.55 body={"detail": "Expecting ',' delimiter: line 2 column 207 (char 208)"}
+2026-06-04 13:31:23,739 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:31:23,739 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:31:23,739 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:31:23,740 INFO [app.src.main.py.main] request id=598bc5125593 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "Actúa como un analista de datos y experto en Mermaid.js. Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes SEPARAR obligatoriamente los "Cargos" y los "Abonos" por fecha. REGLAS ESTRICTAS: . Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: Total de Cargos y Total de Abonos. . Genera un gráfico de tipo xychart-beta en Mermaid. . El gráfico DEBE tener dos series de barras distintas (una para Cargos y otra para Abonos). . La salida debe ser texto plano formateado dentro del campo "answer" del JSON, usando \n para los saltos de línea. ESTRUCTURA EXACTA ESPERADA PARA EL CÓDIGO MERMAID: mermaid xychart-beta title "Distribución de Cargos y Abonos por Fecha" x-axis ["YYYY-MM-DD", "YYYY-MM-DD"] y-axis "Monto Total" bar "Cargos" [., .] bar "Abonos" [., .]"
+}
+2026-06-04 13:31:23,740 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:31:23,740 INFO [app.src.main.py.main] response id=598bc5125593 method=POST path=/api/ai/ask status=422 elapsed_ms=0.45 body={"detail": "Expecting ',' delimiter: line 2 column 207 (char 208)"}
+2026-06-04 13:32:40,740 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:32:40,741 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:32:40,741 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:32:40,744 INFO [app.src.main.py.main] request id=39fd30a362c4 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "Actúa como un analista de datos y experto en mermaid.js. Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes separar obligatoriamente los "cargos" y los "abonos" por fecha. Reglas estrictas: . Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: total de cargos y total de abonos. . Genera un gráfico de tipo"
+}
+2026-06-04 13:32:40,744 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:32:40,745 INFO [app.src.main.py.main] response id=39fd30a362c4 method=POST path=/api/ai/ask status=422 elapsed_ms=0.72 body={"detail": "Expecting ',' delimiter: line 2 column 207 (char 208)"}
+2026-06-04 13:32:41,581 INFO [app.src.main.py.main] request id=572570472c46 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "Actúa como un analista de datos y experto en mermaid.js. Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes separar obligatoriamente los "cargos" y los "abonos" por fecha. Reglas estrictas: . Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: total de cargos y total de abonos. . Genera un gráfico de tipo"
+}
+2026-06-04 13:32:41,581 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:32:41,582 INFO [app.src.main.py.main] response id=572570472c46 method=POST path=/api/ai/ask status=422 elapsed_ms=0.95 body={"detail": "Expecting ',' delimiter: line 2 column 207 (char 208)"}
+2026-06-04 13:32:48,549 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:32:48,549 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:32:48,549 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:32:48,550 INFO [app.src.main.py.main] request id=7790a335c370 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": ""
+}
+2026-06-04 13:32:48,550 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:32:48,550 INFO [app.src.main.py.main] response id=7790a335c370 method=POST path=/api/ai/ask status=422 elapsed_ms=0.32 body={"detail": "Missing field: question"}
+2026-06-04 13:32:54,102 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:32:54,103 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:32:54,103 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:32:54,104 INFO [app.src.main.py.main] request id=c93d3f863290 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "¿Cuántas transacciones de input se registraron el mes pasado?"
+}
+2026-06-04 13:32:54,105 INFO [app.src.main.py.application.ai_service] processing AI analytics question question=¿Cuántas transacciones de input se registraron el mes pasado?
+2026-06-04 13:32:54,105 INFO [app.src.main.py.infrastructure.llm_client] calling Gemini API model=gemini-flash-latest prompt_chars=1229
+2026-06-04 13:32:59,080 INFO [app.src.main.py.infrastructure.llm_client] Gemini API response received model=gemini-flash-latest response_chars=113
+2026-06-04 13:32:59,080 INFO [app.src.main.py.application.ai_service] AI planned analytics query metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:32:59,080 INFO [app.src.main.py.application.services] executing analytics query metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:32:59,088 INFO [app.src.main.py.application.services] analytics query completed metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:32:59,088 INFO [app.src.main.py.infrastructure.llm_client] calling Gemini API model=gemini-flash-latest prompt_chars=375
+2026-06-04 13:33:02,972 INFO [app.src.main.py.infrastructure.llm_client] Gemini API response received model=gemini-flash-latest response_chars=88
+2026-06-04 13:33:02,972 INFO [app.src.main.py.application.ai_service] AI analytics answer generated metric=transactions_count filters={'from': '2026-05-01', 'to': '2026-05-31', 'operationType': 'input'}
+2026-06-04 13:33:02,973 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 200 -
+2026-06-04 13:33:02,973 INFO [app.src.main.py.main] response id=c93d3f863290 method=POST path=/api/ai/ask status=200 elapsed_ms=8868.86 body={"question": "¿Cuántas transacciones de input se registraron el mes pasado?", "metric": "transactions_count", "filters": {"from": "2026-05-01", "to": "2026-05-31", "operationType": "input"}, "result": {"count": 243}, "answer": "Se registraron **243** transacciones de tipo \"input\" entre el 1 y el 31 de mayo de 2026."}
+2026-06-04 13:33:07,451 INFO [app.src.main.py.main] request method=OPTIONS path=/api/ai/ask
+2026-06-04 13:33:07,451 INFO [app.src.main.py.main] http_server "OPTIONS /api/ai/ask HTTP/1.1" 204 -
+2026-06-04 13:33:07,451 INFO [app.src.main.py.main] response method=OPTIONS path=/api/ai/ask status=204
+2026-06-04 13:33:07,452 INFO [app.src.main.py.main] request id=8fa75be21b68 method=POST path=/api/ai/ask query=- remote=127.0.0.1 body={
+  "question": "¿Actúa como un analista de datos y experto en mermaid.js. Tu tarea es generar la distribución del total de monto de transacciones de la última semana, pero debes separar obligatoriamente los "cargos" y los "abonos" por fecha. Reglas estrictas: . Analiza o consulta los datos asegurándote de obtener dos sumatorias distintas por cada fecha: total de cargos y total de abonos. . Genera un gráfico de tipo?"
+}
+2026-06-04 13:33:07,453 INFO [app.src.main.py.main] http_server "POST /api/ai/ask HTTP/1.1" 422 -
+2026-06-04 13:33:07,453 INFO [app.src.main.py.main] response id=8fa75be21b68 method=POST path=/api/ai/ask status=422 elapsed_ms=0.42 body={"detail": "Expecting ',' delimiter: line 2 column 208 (char 209)"}
