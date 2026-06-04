@@ -8,31 +8,22 @@ logger = logging.getLogger(__name__)
 
 class GeminiClient:
     def __init__(self, api_key: str | None, model: str) -> None:
-        # TODO 1: Guarda la API Key y el modelo en los atributos de la instancia
-        self.api_key = ### TU CÓDIGO AQUÍ ###
+        self.api_key = api_key
         self.model = model
 
     def generate_text(self, prompt: str) -> str:
-        # TODO 2: Validar si la API Key existe antes de hacer la petición.
-        # Si no se configuró (es None o está vacía), levanta un RuntimeError.
-        if ### TU CÓDIGO AQUÍ ###:
+        if not self.api_key:
             logger.warning("Gemini request skipped because API key is not configured")
             raise RuntimeError("LLM_API_KEY is not configured")
 
-        # TODO 3: Construir la URL dinámica utilizando f-strings e incorporando el modelo elegido.
-        url = ### TU CÓDIGO AQUÍ ###
-        
-        # TODO 4: Definir el cuerpo de la petición (Payload) respetando la estructura JSON de Gemini.
-        payload = ### TU CÓDIGO AQUÍ ###
-        
-        # TODO 5: Configurar los encabezados (Headers) HTTP.
-        # Recuerda que Gemini exige que su API Key se envíe en un header específico llamado 'X-goog-api-key'.
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent"
+        payload = {"contents": [{"parts": [{"text": prompt}]}]}
         request = Request(
             url,
             data=json.dumps(payload).encode("utf-8"),
             headers={
                 "Content-Type": "application/json",
-                ### TU CÓDIGO AQUÍ ###: ### TU CÓDIGO AQUÍ ###
+                "X-goog-api-key": self.api_key,
             },
             method="POST",
         )
